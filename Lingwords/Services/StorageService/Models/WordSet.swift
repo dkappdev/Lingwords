@@ -10,7 +10,7 @@ import Foundation
 /// Instances of this class represent word sets (for example: "Irregular verbs pt.1").
 public class WordSet: ItemProtocol {
 
-    /// Unique identifier for the word set.
+    /// Unique identifier
     public var uuid = UUID()
     /// Name of the word set.
     public var name: String

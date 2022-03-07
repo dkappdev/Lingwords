@@ -7,11 +7,16 @@
 
 import Foundation
 
+/// Class for folders in the file structure. Each folder can contain word sets or other folders.
 public class Folder: ItemProtocol {
 
+    /// Unique identifier
     public var uuid = UUID()
-    public let name: String
+    /// Folder name.
+    public var name: String
+    /// Items contained in this folder.
     public var items: [ItemProtocol]
+    /// Folder that contains this folder. This value is `nil` for root folder.
     public weak var parentFolder: Folder?
 
     public init(name: String, items: [ItemProtocol], parentFolder: Folder?) {

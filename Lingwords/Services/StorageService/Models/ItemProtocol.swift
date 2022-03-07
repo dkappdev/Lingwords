@@ -7,9 +7,7 @@
 
 import Foundation
 
-/// Protocol to which storage items should conform.
-/// In current implementation both `WordSet` and `Folder` conform to `ItemProtocol`,
-/// which allows for creation of nested folders,
+/// Protocol for identifiable items
 public protocol ItemProtocol {
 
     var uuid: UUID { get }

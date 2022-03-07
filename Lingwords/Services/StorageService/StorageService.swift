@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: Add documentation
+
 public protocol StorageServiceProtocol {
 
     var rootFolder: Folder { get }
