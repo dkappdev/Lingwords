@@ -7,28 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E248219127D66A7600CF63FE /* WordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219027D66A7600CF63FE /* WordSet.swift */; };
+		E248219327D66CE500CF63FE /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219227D66CE500CF63FE /* Word.swift */; };
+		E248219527D66E8D00CF63FE /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219427D66E8D00CF63FE /* ItemProtocol.swift */; };
+		E248219727D6755C00CF63FE /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219627D6755C00CF63FE /* Folder.swift */; };
+		E248219D27D6816300CF63FE /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219C27D6816300CF63FE /* StorageService.swift */; };
+		E24821A927D6BB8400CF63FE /* LingwordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24821A827D6BB8400CF63FE /* LingwordsTests.swift */; };
 		E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346627D61C9A008E53CF /* AppDelegate.swift */; };
 		E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346827D61C9A008E53CF /* SceneDelegate.swift */; };
-		E257346B27D61C9A008E53CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346A27D61C9A008E53CF /* ViewController.swift */; };
 		E257347027D61C9B008E53CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E257346F27D61C9B008E53CF /* Assets.xcassets */; };
 		E257347327D61C9B008E53CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E257347127D61C9B008E53CF /* LaunchScreen.storyboard */; };
 		E3DE2A82897B2AE859051BFE /* Pods_Lingwords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E24821AA27D6BB8400CF63FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E257345B27D61C9A008E53CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E257346227D61C9A008E53CF;
+			remoteInfo = Lingwords;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lingwords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.release.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.release.xcconfig"; sourceTree = "<group>"; };
 		49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.debug.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.debug.xcconfig"; sourceTree = "<group>"; };
+		E248219027D66A7600CF63FE /* WordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSet.swift; sourceTree = "<group>"; };
+		E248219227D66CE500CF63FE /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		E248219427D66E8D00CF63FE /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
+		E248219627D6755C00CF63FE /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		E248219C27D6816300CF63FE /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		E24821A627D6BB8400CF63FE /* LingwordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LingwordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E24821A827D6BB8400CF63FE /* LingwordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LingwordsTests.swift; sourceTree = "<group>"; };
 		E257346327D61C9A008E53CF /* Lingwords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lingwords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E257346627D61C9A008E53CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E257346827D61C9A008E53CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E257346A27D61C9A008E53CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E257346F27D61C9B008E53CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E257347227D61C9B008E53CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E257347427D61C9B008E53CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E24821A327D6BB8400CF63FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E257346027D61C9A008E53CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,10 +85,66 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E248218D27D6535D00CF63FE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E257347427D61C9B008E53CF /* Info.plist */,
+				E257346F27D61C9B008E53CF /* Assets.xcassets */,
+				E257347127D61C9B008E53CF /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E248218E27D6536A00CF63FE /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E257346627D61C9A008E53CF /* AppDelegate.swift */,
+				E257346827D61C9A008E53CF /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		E248218F27D66A6700CF63FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E248219427D66E8D00CF63FE /* ItemProtocol.swift */,
+				E248219227D66CE500CF63FE /* Word.swift */,
+				E248219027D66A7600CF63FE /* WordSet.swift */,
+				E248219627D6755C00CF63FE /* Folder.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E248219A27D6815300CF63FE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E24821AF27D6CF9300CF63FE /* StorageService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E24821A727D6BB8400CF63FE /* LingwordsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E24821A827D6BB8400CF63FE /* LingwordsTests.swift */,
+			);
+			path = LingwordsTests;
+			sourceTree = "<group>";
+		};
+		E24821AF27D6CF9300CF63FE /* StorageService */ = {
+			isa = PBXGroup;
+			children = (
+				E248219C27D6816300CF63FE /* StorageService.swift */,
+				E248218F27D66A6700CF63FE /* Models */,
+			);
+			path = StorageService;
+			sourceTree = "<group>";
+		};
 		E257345A27D61C9A008E53CF = {
 			isa = PBXGroup;
 			children = (
 				E257346527D61C9A008E53CF /* Lingwords */,
+				E24821A727D6BB8400CF63FE /* LingwordsTests */,
 				E257346427D61C9A008E53CF /* Products */,
 				4753D36F12281F621947A031 /* Pods */,
 				CE6339AECEB414821F276136 /* Frameworks */,
@@ -71,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				E257346327D61C9A008E53CF /* Lingwords.app */,
+				E24821A627D6BB8400CF63FE /* LingwordsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,12 +163,9 @@
 		E257346527D61C9A008E53CF /* Lingwords */ = {
 			isa = PBXGroup;
 			children = (
-				E257346627D61C9A008E53CF /* AppDelegate.swift */,
-				E257346827D61C9A008E53CF /* SceneDelegate.swift */,
-				E257346A27D61C9A008E53CF /* ViewController.swift */,
-				E257346F27D61C9B008E53CF /* Assets.xcassets */,
-				E257347127D61C9B008E53CF /* LaunchScreen.storyboard */,
-				E257347427D61C9B008E53CF /* Info.plist */,
+				E248219A27D6815300CF63FE /* Services */,
+				E248218E27D6536A00CF63FE /* AppDelegate */,
+				E248218D27D6535D00CF63FE /* Resources */,
 			);
 			path = Lingwords;
 			sourceTree = "<group>";
@@ -91,6 +173,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E24821A527D6BB8400CF63FE /* LingwordsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E24821AC27D6BB8400CF63FE /* Build configuration list for PBXNativeTarget "LingwordsTests" */;
+			buildPhases = (
+				E24821A227D6BB8400CF63FE /* Sources */,
+				E24821A327D6BB8400CF63FE /* Frameworks */,
+				E24821A427D6BB8400CF63FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E24821AB27D6BB8400CF63FE /* PBXTargetDependency */,
+			);
+			name = LingwordsTests;
+			productName = LingwordsTests;
+			productReference = E24821A627D6BB8400CF63FE /* LingwordsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E257346227D61C9A008E53CF /* Lingwords */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E257347727D61C9B008E53CF /* Build configuration list for PBXNativeTarget "Lingwords" */;
@@ -120,6 +220,10 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					E24821A527D6BB8400CF63FE = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = E257346227D61C9A008E53CF;
+					};
 					E257346227D61C9A008E53CF = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -139,11 +243,19 @@
 			projectRoot = "";
 			targets = (
 				E257346227D61C9A008E53CF /* Lingwords */,
+				E24821A527D6BB8400CF63FE /* LingwordsTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E24821A427D6BB8400CF63FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E257346127D61C9A008E53CF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,17 +311,37 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E24821A227D6BB8400CF63FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E24821A927D6BB8400CF63FE /* LingwordsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E257345F27D61C9A008E53CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E257346B27D61C9A008E53CF /* ViewController.swift in Sources */,
 				E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */,
+				E248219327D66CE500CF63FE /* Word.swift in Sources */,
+				E248219527D66E8D00CF63FE /* ItemProtocol.swift in Sources */,
 				E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */,
+				E248219127D66A7600CF63FE /* WordSet.swift in Sources */,
+				E248219727D6755C00CF63FE /* Folder.swift in Sources */,
+				E248219D27D6816300CF63FE /* StorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E24821AB27D6BB8400CF63FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E257346227D61C9A008E53CF /* Lingwords */;
+			targetProxy = E24821AA27D6BB8400CF63FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E257347127D61C9B008E53CF /* LaunchScreen.storyboard */ = {
@@ -223,6 +355,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E24821AD27D6BB8400CF63FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCW5LR94BF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkdev.LingwordsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lingwords.app/Lingwords";
+			};
+			name = Debug;
+		};
+		E24821AE27D6BB8400CF63FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCW5LR94BF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkdev.LingwordsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lingwords.app/Lingwords";
+			};
+			name = Release;
+		};
 		E257347527D61C9B008E53CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -349,7 +517,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HCW5LR94BF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lingwords/Info.plist;
+				INFOPLIST_FILE = Lingwords/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -378,7 +546,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HCW5LR94BF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Lingwords/Info.plist;
+				INFOPLIST_FILE = Lingwords/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -400,6 +568,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E24821AC27D6BB8400CF63FE /* Build configuration list for PBXNativeTarget "LingwordsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E24821AD27D6BB8400CF63FE /* Debug */,
+				E24821AE27D6BB8400CF63FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E257345E27D61C9A008E53CF /* Build configuration list for PBXProject "Lingwords" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
