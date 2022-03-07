@@ -46,7 +46,6 @@
 				49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */,
 				21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -97,6 +96,7 @@
 			buildConfigurationList = E257347727D61C9B008E53CF /* Build configuration list for PBXNativeTarget "Lingwords" */;
 			buildPhases = (
 				F8BD83E40B50474684BE7738 /* [CP] Check Pods Manifest.lock */,
+				E24F22A027D6223B00E03449 /* SwiftLint */,
 				E257345F27D61C9A008E53CF /* Sources */,
 				E257346027D61C9A008E53CF /* Frameworks */,
 				E257346127D61C9A008E53CF /* Resources */,
@@ -156,6 +156,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E24F22A027D6223B00E03449 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which /opt/homebrew/bin/swiftlint >/dev/null; then\n  /opt/homebrew/bin/swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		F8BD83E40B50474684BE7738 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
