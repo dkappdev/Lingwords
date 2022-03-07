@@ -12,9 +12,13 @@
 		E257346B27D61C9A008E53CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346A27D61C9A008E53CF /* ViewController.swift */; };
 		E257347027D61C9B008E53CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E257346F27D61C9B008E53CF /* Assets.xcassets */; };
 		E257347327D61C9B008E53CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E257347127D61C9B008E53CF /* LaunchScreen.storyboard */; };
+		E3DE2A82897B2AE859051BFE /* Pods_Lingwords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lingwords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.release.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.release.xcconfig"; sourceTree = "<group>"; };
+		49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.debug.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.debug.xcconfig"; sourceTree = "<group>"; };
 		E257346327D61C9A008E53CF /* Lingwords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lingwords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E257346627D61C9A008E53CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E257346827D61C9A008E53CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3DE2A82897B2AE859051BFE /* Pods_Lingwords.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4753D36F12281F621947A031 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */,
+				21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE6339AECEB414821F276136 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E257345A27D61C9A008E53CF = {
 			isa = PBXGroup;
 			children = (
 				E257346527D61C9A008E53CF /* Lingwords */,
 				E257346427D61C9A008E53CF /* Products */,
+				4753D36F12281F621947A031 /* Pods */,
+				CE6339AECEB414821F276136 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +96,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E257347727D61C9B008E53CF /* Build configuration list for PBXNativeTarget "Lingwords" */;
 			buildPhases = (
+				F8BD83E40B50474684BE7738 /* [CP] Check Pods Manifest.lock */,
 				E257345F27D61C9A008E53CF /* Sources */,
 				E257346027D61C9A008E53CF /* Frameworks */,
 				E257346127D61C9A008E53CF /* Resources */,
@@ -128,6 +154,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F8BD83E40B50474684BE7738 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Lingwords-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E257345F27D61C9A008E53CF /* Sources */ = {
@@ -272,6 +323,7 @@
 		};
 		E257347827D61C9B008E53CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -300,6 +352,7 @@
 		};
 		E257347927D61C9B008E53CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
