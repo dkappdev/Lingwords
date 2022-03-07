@@ -8,7 +8,7 @@
 import Foundation
 
 /// Class for folders in the file structure. Each folder can contain word sets or other folders.
-public class Folder: ItemProtocol {
+public class Folder {
 
     /// Unique identifier
     public var uuid = UUID()
@@ -39,3 +39,5 @@ public class Folder: ItemProtocol {
         return result
     }
 }
+
+extension Folder: ItemProtocol { }

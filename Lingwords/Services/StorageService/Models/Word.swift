@@ -8,7 +8,7 @@
 import Foundation
 
 /// Instances of this class represent term-definition models.
-public class Word: ItemProtocol {
+public class Word {
 
     /// Unique identifier
     public var uuid = UUID()
@@ -29,3 +29,5 @@ public class Word: ItemProtocol {
         self.wordSet = wordSet
     }
 }
+
+extension Word: ItemProtocol { }

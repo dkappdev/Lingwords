@@ -8,7 +8,7 @@
 import Foundation
 
 /// Instances of this class represent word sets (for example: "Irregular verbs pt.1").
-public class WordSet: ItemProtocol {
+public class WordSet {
 
     /// Unique identifier
     public var uuid = UUID()
@@ -49,3 +49,5 @@ public class WordSet: ItemProtocol {
         self.parentFolder = parentFolder
     }
 }
+
+extension WordSet: ItemProtocol { }
