@@ -38,10 +38,10 @@ extension FolderScreenPresenter: FolderScreenPresenterProtocol {
             }
         }
 
-        let folderviewModel = FolderViewModel(uuid: folder.uuid,
+        let folderViewModel = FolderViewModel(uuid: folder.uuid,
                                               name: folder.name,
                                               items: itemViewModels)
 
-        view?.show(folder: folderviewModel)
+        view?.show(folder: folderViewModel)
     }
 }
