@@ -56,7 +56,9 @@ public protocol StorageServiceProtocol {
 }
 
 /// Concrete instance of storage service. This class is responsible for storing and modifying data.
-public class StorageService: StorageServiceProtocol {
+public final class StorageService: StorageServiceProtocol {
+
+    // MARK: Properties
 
     public var rootFolder: Folder
 
@@ -65,51 +67,79 @@ public class StorageService: StorageServiceProtocol {
         rootFolder.flatten()
     }
 
+    private static let fileURL = FileManager
+        .default
+        .urls(for: .documentDirectory, in: .userDomainMask)
+        .first?
+        .appendingPathComponent("userData")
+        .appendingPathExtension("json")
+
+    // MARK: Initializers
+
     /// Creates a new instance of `StorageService` with empty root folder.
     public init() {
-        self.rootFolder = Folder(name: "Root", items: [], parentFolder: nil)
+        self.rootFolder = Self.loadRootFolderFromFile() ?? Folder(name: "Library", items: [])
     }
+
+    // MARK: Getting items
 
     public func item(withUUID uuid: UUID) -> ItemProtocol? {
         flattenedItems.first(where: { $0.uuid == uuid })
     }
 
-    public func removeItem(withUUID uuid: UUID) {
-        guard let item = flattenedItems.first(where: { $0.uuid == uuid }) else { return }
+    // MARK: Removing items
 
-        if let word = item as? Word,
-           let wordSet = word.wordSet {
-            wordSet.words.removeAll { $0.uuid == word.uuid }
-        } else if let wordSet = item as? WordSet,
-                  let parentFolder = wordSet.parentFolder {
-            parentFolder.items.removeAll { $0.uuid == wordSet.uuid }
-        } else if let folder = item as? Folder,
-                  let parentFolder = folder.parentFolder {
-            parentFolder.items.removeAll { $0.uuid == folder.uuid }
+    public func removeItem(withUUID uuid: UUID) {
+        guard let foundItem = flattenedItems.first(where: { $0.uuid == uuid }) else { return }
+
+        if let word = foundItem as? Word,
+           let wordSetUUID = word.wordSetUUID,
+           let wordSet = item(withUUID: wordSetUUID) as? WordSet {
+            wordSet.removeWord(withUUID: word.uuid)
+        } else if let wordSet = foundItem as? WordSet,
+                  let parentFolderUUID = wordSet.parentFolderUUID,
+                  let parentFolder = item(withUUID: parentFolderUUID) as? Folder {
+            parentFolder.removeItem(withUUID: uuid)
+        } else if let folder = foundItem as? Folder,
+                  let parentFolderUUID = folder.parentFolderUUID,
+                  let parentFolder = item(withUUID: parentFolderUUID) as? Folder {
+            parentFolder.removeItem(withUUID: uuid)
         }
+
+        saveToFile()
     }
+
+    // MARK: Adding items
 
     public func addFolder(_ folder: Folder, toFolderWithUUID uuid: UUID) {
         guard let parentFolder = flattenedItems.first(where: { $0.uuid == uuid }) as? Folder else { return }
-        folder.parentFolder = parentFolder
-        parentFolder.items.append(folder)
+        folder.parentFolderUUID = uuid
+        parentFolder.addItem(folder)
+
+        saveToFile()
     }
 
     public func addWordSet(_ wordSet: WordSet, toFolderWithUUID uuid: UUID) {
         guard let parentFolder = flattenedItems.first(where: { $0.uuid == uuid}) as? Folder else { return }
-        wordSet.parentFolder = parentFolder
-        parentFolder.items.append(wordSet)
+        wordSet.parentFolderUUID = uuid
+        parentFolder.addItem(wordSet)
+
+        saveToFile()
     }
 
     public func addWord(_ word: Word, toWordSetWithUUID uuid: UUID) {
         guard let wordSet = flattenedItems.first(where: { $0.uuid == uuid }) as? WordSet else { return }
-        word.wordSet = wordSet
-        wordSet.words.append(word)
+        word.wordSetUUID = uuid
+        wordSet.addWord(word)
+
+        saveToFile()
     }
+
+    // MARK: Updating items
 
     public func updateFolder(_ folder: Folder, withUUID uuid: UUID) {
         guard let foundFolder = flattenedItems.first(where: { $0.uuid == uuid }) as? Folder,
-              let parentUUID = foundFolder.parentFolder?.uuid else { return }
+              let parentUUID = foundFolder.parentFolderUUID else { return }
 
         folder.uuid = uuid
         removeItem(withUUID: uuid)
@@ -118,7 +148,7 @@ public class StorageService: StorageServiceProtocol {
 
     public func updateWordSet(_ wordSet: WordSet, withUUID uuid: UUID) {
         guard let foundWordSet = flattenedItems.first(where: { $0.uuid == uuid }) as? WordSet,
-              let parentUUID = foundWordSet.parentFolder?.uuid else { return }
+              let parentUUID = foundWordSet.parentFolderUUID else { return }
 
         wordSet.uuid = uuid
         removeItem(withUUID: uuid)
@@ -127,10 +157,42 @@ public class StorageService: StorageServiceProtocol {
 
     public func updateWord(_ word: Word, withUUID uuid: UUID) {
         guard let foundWord = flattenedItems.first(where: { $0.uuid == uuid }) as? Word,
-              let parentUUID = foundWord.wordSet?.uuid else { return }
+              let parentUUID = foundWord.wordSetUUID else { return }
 
         word.uuid = uuid
         removeItem(withUUID: uuid)
         addWord(word, toWordSetWithUUID: parentUUID)
+    }
+
+    // MARK: Persistence
+
+    private func saveToFile() {
+        guard let fileURL = Self.fileURL else {
+            print("Failed to save user data – file URL does not exist")
+            return
+        }
+
+        do {
+            let data = try JSONEncoder().encode(rootFolder)
+            try data.write(to: fileURL, options: [.atomic])
+        } catch {
+            print(error)
+        }
+    }
+
+    private static func loadRootFolderFromFile() -> Folder? {
+        guard let fileURL = Self.fileURL else {
+            print("Failed to read user data – file URL does not exist")
+            return nil
+        }
+
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let rootFolder = try JSONDecoder().decode(Folder.self, from: data)
+            return rootFolder
+        } catch {
+            print(error)
+            return nil
+        }
     }
 }

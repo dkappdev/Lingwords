@@ -8,10 +8,12 @@
 import Foundation
 
 /// Instances of this class represent term-definition models.
-public class Word {
+public class Word: Codable {
+
+    // MARK: Properties
 
     /// Unique identifier
-    public var uuid = UUID()
+    public var uuid: UUID
     /// Term
     public var term: String
     /// Definition
@@ -19,15 +21,19 @@ public class Word {
     /// Indicates whether or not user finished learning this word
     public var isCompleted: Bool
 
-    /// Word set which contains this word
-    public weak var wordSet: WordSet?
+    /// UUID of word set containing this word
+    public var wordSetUUID: UUID?
 
-    public init(term: String, definition: String, isCompleted: Bool, wordSet: WordSet?) {
+    // MARK: Initializers
+
+    public init(term: String, definition: String, isCompleted: Bool) {
+        self.uuid = UUID()
         self.term = term
         self.definition = definition
         self.isCompleted = isCompleted
-        self.wordSet = wordSet
     }
 }
+
+// MARK: - ItemProtocol
 
 extension Word: ItemProtocol { }

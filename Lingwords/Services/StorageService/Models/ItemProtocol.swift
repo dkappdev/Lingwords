@@ -10,5 +10,6 @@ import Foundation
 /// Protocol for identifiable items
 public protocol ItemProtocol {
 
+    /// Item identifier
     var uuid: UUID { get }
 }

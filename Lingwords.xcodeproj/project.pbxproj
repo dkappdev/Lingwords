@@ -7,16 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E207ED5727D7C4DB0080B88B /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207ED5627D7C4DB0080B88B /* DIContainer.swift */; };
 		E248219127D66A7600CF63FE /* WordSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219027D66A7600CF63FE /* WordSet.swift */; };
 		E248219327D66CE500CF63FE /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219227D66CE500CF63FE /* Word.swift */; };
 		E248219527D66E8D00CF63FE /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219427D66E8D00CF63FE /* ItemProtocol.swift */; };
 		E248219727D6755C00CF63FE /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219627D6755C00CF63FE /* Folder.swift */; };
 		E248219D27D6816300CF63FE /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219C27D6816300CF63FE /* StorageService.swift */; };
 		E24821A927D6BB8400CF63FE /* LingwordsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24821A827D6BB8400CF63FE /* LingwordsTests.swift */; };
+		E24AA36D27D757FD00CA6523 /* FolderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */; };
+		E24AA36F27D7585F00CA6523 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA36E27D7585F00CA6523 /* ItemViewModel.swift */; };
+		E24AA37127D7595F00CA6523 /* FolderScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA37027D7595F00CA6523 /* FolderScreenView.swift */; };
 		E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346627D61C9A008E53CF /* AppDelegate.swift */; };
 		E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346827D61C9A008E53CF /* SceneDelegate.swift */; };
 		E257347027D61C9B008E53CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E257346F27D61C9B008E53CF /* Assets.xcassets */; };
 		E257347327D61C9B008E53CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E257347127D61C9B008E53CF /* LaunchScreen.storyboard */; };
+		E25854D927E3E89400DB5DD2 /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25854D827E3E89400DB5DD2 /* FolderViewModel.swift */; };
+		E272714A27D7722900C2632F /* FolderScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272714927D7722900C2632F /* FolderScreenFactory.swift */; };
+		E28D278C27D744C5008771DE /* FolderScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */; };
+		E2E4CEFD27DD0EFF00AAF042 /* FolderScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */; };
 		E3DE2A82897B2AE859051BFE /* Pods_Lingwords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +42,7 @@
 		1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lingwords.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21282932A41F8D8C43C57F0D /* Pods-Lingwords.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.release.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.release.xcconfig"; sourceTree = "<group>"; };
 		49A77B68F727DE9C107FC5AD /* Pods-Lingwords.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lingwords.debug.xcconfig"; path = "Target Support Files/Pods-Lingwords/Pods-Lingwords.debug.xcconfig"; sourceTree = "<group>"; };
+		E207ED5627D7C4DB0080B88B /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		E248219027D66A7600CF63FE /* WordSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSet.swift; sourceTree = "<group>"; };
 		E248219227D66CE500CF63FE /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		E248219427D66E8D00CF63FE /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
@@ -41,12 +50,19 @@
 		E248219C27D6816300CF63FE /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		E24821A627D6BB8400CF63FE /* LingwordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LingwordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E24821A827D6BB8400CF63FE /* LingwordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LingwordsTests.swift; sourceTree = "<group>"; };
+		E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenPresenter.swift; sourceTree = "<group>"; };
+		E24AA36E27D7585F00CA6523 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
+		E24AA37027D7595F00CA6523 /* FolderScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenView.swift; sourceTree = "<group>"; };
 		E257346327D61C9A008E53CF /* Lingwords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lingwords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E257346627D61C9A008E53CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E257346827D61C9A008E53CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E257346F27D61C9B008E53CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E257347227D61C9B008E53CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E257347427D61C9B008E53CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E25854D827E3E89400DB5DD2 /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
+		E272714927D7722900C2632F /* FolderScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenFactory.swift; sourceTree = "<group>"; };
+		E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenInteractor.swift; sourceTree = "<group>"; };
+		E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +101,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E207ED5527D7C0480080B88B /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				E207ED5627D7C4DB0080B88B /* DIContainer.swift */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
 		E248218D27D6535D00CF63FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +142,7 @@
 		E248219A27D6815300CF63FE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E207ED5527D7C0480080B88B /* DependencyInjection */,
 				E24821AF27D6CF9300CF63FE /* StorageService */,
 			);
 			path = Services;
@@ -163,11 +188,42 @@
 		E257346527D61C9A008E53CF /* Lingwords */ = {
 			isa = PBXGroup;
 			children = (
+				E28D278927D6ED08008771DE /* Scenes */,
 				E248219A27D6815300CF63FE /* Services */,
 				E248218E27D6536A00CF63FE /* AppDelegate */,
 				E248218D27D6535D00CF63FE /* Resources */,
 			);
 			path = Lingwords;
+			sourceTree = "<group>";
+		};
+		E25854DA27E3E8A700DB5DD2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E25854D827E3E89400DB5DD2 /* FolderViewModel.swift */,
+				E24AA36E27D7585F00CA6523 /* ItemViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E28D278927D6ED08008771DE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E28D278A27D6ED16008771DE /* FolderScreen */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		E28D278A27D6ED16008771DE /* FolderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E25854DA27E3E8A700DB5DD2 /* ViewModels */,
+				E24AA37027D7595F00CA6523 /* FolderScreenView.swift */,
+				E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */,
+				E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */,
+				E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */,
+				E272714927D7722900C2632F /* FolderScreenFactory.swift */,
+			);
+			path = FolderScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,9 +382,17 @@
 				E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */,
 				E248219327D66CE500CF63FE /* Word.swift in Sources */,
 				E248219527D66E8D00CF63FE /* ItemProtocol.swift in Sources */,
+				E24AA36F27D7585F00CA6523 /* ItemViewModel.swift in Sources */,
+				E24AA36D27D757FD00CA6523 /* FolderScreenPresenter.swift in Sources */,
 				E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */,
+				E25854D927E3E89400DB5DD2 /* FolderViewModel.swift in Sources */,
+				E207ED5727D7C4DB0080B88B /* DIContainer.swift in Sources */,
+				E24AA37127D7595F00CA6523 /* FolderScreenView.swift in Sources */,
 				E248219127D66A7600CF63FE /* WordSet.swift in Sources */,
+				E272714A27D7722900C2632F /* FolderScreenFactory.swift in Sources */,
 				E248219727D6755C00CF63FE /* Folder.swift in Sources */,
+				E28D278C27D744C5008771DE /* FolderScreenInteractor.swift in Sources */,
+				E2E4CEFD27DD0EFF00AAF042 /* FolderScreenRouter.swift in Sources */,
 				E248219D27D6816300CF63FE /* StorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

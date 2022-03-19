@@ -16,11 +16,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .systemBackground
+        let storageService = StorageService()
+        DIContainer.shared.register(type: StorageServiceProtocol.self, component: storageService)
+//        let rootFolderUUID = storageService.rootFolder.uuid
+//        let folder = Folder(name: "Folder 1", items: [])
+//        let wordSet = WordSet(name: "WordSet", words: [], isCaseSensitive: true)
+//        storageService.addFolder(folder, toFolderWithUUID: rootFolderUUID)
+//        storageService.addWordSet(wordSet, toFolderWithUUID: rootFolderUUID)
+//        let subfolder = Folder(name: "Subfolder", items: [])
+//        storageService.addFolder(subfolder, toFolderWithUUID: folder.uuid)
+
+        let factory = FolderScreenFactory(folderUUID: storageService.rootFolder.uuid)
+        let navigationController = UINavigationController(rootViewController: factory.build())
 
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = viewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 }
