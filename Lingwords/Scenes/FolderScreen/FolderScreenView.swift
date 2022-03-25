@@ -22,9 +22,9 @@ public final class FolderScreenView: UITableViewController {
 
     // MARK: Constants
 
-    private enum Section: Int {
-        case folder = 0
-        case wordSet = 1
+    private enum Section {
+        case folder
+        case wordSet
     }
 
     private enum CellIdentifier: String {
@@ -54,6 +54,22 @@ public final class FolderScreenView: UITableViewController {
         interactor?.requestFolder()
     }
 
+    // MARK: Private
+
+    private func getSection(for index: Int) -> Section? {
+        if index == 1 && !folders.isEmpty, !wordSets.isEmpty { return .wordSet }
+
+        if folders.isEmpty && wordSets.isEmpty { return nil }
+
+        guard index == 0 else { return nil }
+
+        if !folders.isEmpty { return .folder }
+
+        if !wordSets.isEmpty { return .wordSet }
+
+        return nil
+    }
+
     // MARK: UITableViewDataSource
 
     public override func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,18 +77,18 @@ public final class FolderScreenView: UITableViewController {
     }
 
     public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let section = getSection(for: section) else { return nil }
+
         switch section {
-        case 0:
+        case .folder:
             return "Folders"
-        case 1:
+        case .wordSet:
             return "Word Sets"
-        default:
-            return nil
         }
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = Section(rawValue: section) else { return 0 }
+        guard let section = getSection(for: section) else { return 0 }
 
         switch section {
         case .folder:
@@ -83,7 +99,7 @@ public final class FolderScreenView: UITableViewController {
     }
 
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = Section(rawValue: indexPath.section) else { return UITableViewCell() }
+        guard let section = getSection(for: indexPath.section) else { return UITableViewCell() }
 
         let cell: UITableViewCell
         let viewModel: ItemViewModel
@@ -109,16 +125,14 @@ public final class FolderScreenView: UITableViewController {
     // MARK: UITableViewDelegate
 
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = Section(rawValue: indexPath.section) else { return }
-
-        let viewModel: ItemViewModel
+        guard let section = getSection(for: indexPath.section) else { return }
 
         switch section {
         case .folder:
-            viewModel = folders[indexPath.row]
+            let viewModel = folders[indexPath.row]
             router?.routeToSubfolder(withUUID: viewModel.uuid)
         case .wordSet:
-            viewModel = wordSets[indexPath.row]
+            let viewModel = wordSets[indexPath.row]
             router?.routeToWordSet(withUUID: viewModel.uuid)
         }
     }
@@ -131,7 +145,7 @@ public final class FolderScreenView: UITableViewController {
     public override func tableView(_ tableView: UITableView,
                                    commit editingStyle: UITableViewCell.EditingStyle,
                                    forRowAt indexPath: IndexPath) {
-        guard let section = Section(rawValue: indexPath.section) else { return }
+        guard let section = getSection(for: indexPath.section) else { return }
 
         switch section {
         case .folder:

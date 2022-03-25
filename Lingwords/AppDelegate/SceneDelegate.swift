@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        storageService.addWordSet(wordSet, toFolderWithUUID: rootFolderUUID)
 //        let subfolder = Folder(name: "Subfolder", items: [])
 //        storageService.addFolder(subfolder, toFolderWithUUID: folder.uuid)
+//        let subfolderWordSet = WordSet(name: "Subfolder word set", words: [], isCaseSensitive: true)
+//        storageService.addWordSet(subfolderWordSet, toFolderWithUUID: subfolder.uuid)
 
         let factory = FolderScreenFactory(folderUUID: storageService.rootFolder.uuid)
         let navigationController = UINavigationController(rootViewController: factory.build())
