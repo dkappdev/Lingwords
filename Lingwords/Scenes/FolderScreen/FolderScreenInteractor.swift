@@ -8,7 +8,7 @@
 import Foundation
 
 /// FolderScreen interactor
-public protocol FolderScreenInteractorProtocol: AnyObject {
+protocol FolderScreenInteractorProtocol: AnyObject {
 
     var presenter: FolderScreenPresenterProtocol? { get set }
 
@@ -20,19 +20,21 @@ public protocol FolderScreenInteractorProtocol: AnyObject {
     func removeItem(withUUID uuid: UUID)
 }
 
-public final class FolderScreenInteractor {
+final class FolderScreenInteractor {
 
     // MARK: Properties
 
-    public var presenter: FolderScreenPresenterProtocol?
+    var presenter: FolderScreenPresenterProtocol?
 
-    private let storageService: StorageServiceProtocol?
+    private let storageService: StorageServiceProtocol
     private let folderUUID: UUID
 
     // MARK: Initializers
 
-    public init(folderUUID uuid: UUID,
-                storageService: StorageServiceProtocol?) {
+    init(
+        folderUUID uuid: UUID,
+        storageService: StorageServiceProtocol
+    ) {
         self.folderUUID = uuid
         self.storageService = storageService
     }
@@ -42,14 +44,22 @@ public final class FolderScreenInteractor {
 
 extension FolderScreenInteractor: FolderScreenInteractorProtocol {
 
-    public func requestFolder() {
-        guard let folder = storageService?.item(withUUID: folderUUID) as? Folder else { return }
-        presenter?.show(folder: folder)
+    func requestFolder() {
+        guard let item = storageService.item(withUUID: folderUUID),
+              case let .folder(folder) = item else {
+            return
+        }
+        let folderItems = storageService.items(inItemWithUUID: folderUUID)
+        presenter?.show(folder: folder, withItems: folderItems)
     }
 
-    public func removeItem(withUUID uuid: UUID) {
-        guard let folder = storageService?.item(withUUID: folderUUID) as? Folder else { return }
-        storageService?.removeItem(withUUID: uuid)
-        presenter?.show(folder: folder)
+    func removeItem(withUUID uuid: UUID) {
+        guard let item = storageService.item(withUUID: folderUUID),
+              case let .folder(folder) = item else {
+            return
+        }
+        storageService.removeItem(withUUID: uuid)
+        let folderItems = storageService.items(inItemWithUUID: folderUUID)
+        presenter?.show(folder: folder, withItems: folderItems)
     }
 }

@@ -8,15 +8,20 @@
 import Foundation
 
 /// Set of methods that a storage service should implement
-public protocol StorageServiceProtocol {
+protocol StorageServiceProtocol {
 
-    /// Root folder that contains all items.
-    var rootFolder: Folder { get }
+    /// UUID of the root folder that contains all items.
+    var rootFolderUUID: UUID { get }
 
     /// Returns an item with specified UUID
     /// - Parameter uuid: unique identifier of the item
     /// - Returns: item with specified UUID.
-    func item(withUUID uuid: UUID) -> ItemProtocol?
+    func item(withUUID uuid: UUID) -> Item?
+
+    /// Returns items in container item with specified UUID
+    /// - Parameter uuid: unique identifier of container item
+    /// - Returns: items in container item with specified UUID
+    func items(inItemWithUUID uuid: UUID) -> [Item]
 
     /// Removes item with specified UUID
     /// - Parameter uuid: unique identifier of the item that should be removed
@@ -56,143 +61,112 @@ public protocol StorageServiceProtocol {
 }
 
 /// Concrete instance of storage service. This class is responsible for storing and modifying data.
-public final class StorageService: StorageServiceProtocol {
+final class StorageService: StorageServiceProtocol {
 
     // MARK: Properties
 
-    public var rootFolder: Folder
+    private let persistenceService: PersistenceServiceProtocol?
 
-    /// This property stores the entire storage tree flattened onto a single array. Used for item searching.
-    private var flattenedItems: [ItemProtocol] {
-        rootFolder.flatten()
-    }
-
-    private static let fileURL = FileManager
-        .default
-        .urls(for: .documentDirectory, in: .userDomainMask)
-        .first?
-        .appendingPathComponent("userData")
-        .appendingPathExtension("json")
+    var rootFolderUUID: UUID
+    private var storage: Storage
 
     // MARK: Initializers
 
     /// Creates a new instance of `StorageService` with empty root folder.
-    public init() {
-        self.rootFolder = Self.loadRootFolderFromFile() ?? Folder(name: "Library", items: [])
+    init(
+        persistenceService: PersistenceServiceProtocol? =
+            DIContainer.shared.resolve(type: PersistenceServiceProtocol.self)
+    ) {
+        self.persistenceService = persistenceService
+
+        guard let storage = persistenceService?.loadFromFile(type: Storage.self) else {
+            let rootFolder = Folder(name: "Library")
+            let rootItem = Item.folder(rootFolder)
+            self.rootFolderUUID = rootFolder.uuid
+            self.storage = Storage(rootFolderUUID: rootFolder.uuid, items: [rootFolder.uuid: rootItem])
+            return
+        }
+
+        self.rootFolderUUID = storage.rootFolderUUID
+        self.storage = storage
     }
 
     // MARK: Getting items
 
-    public func item(withUUID uuid: UUID) -> ItemProtocol? {
-        flattenedItems.first(where: { $0.uuid == uuid })
+    func item(withUUID uuid: UUID) -> Item? {
+        storage.items[uuid]
+    }
+
+    func items(inItemWithUUID uuid: UUID) -> [Item] {
+        storage.items.values.filter { $0.parentUUID == uuid }
     }
 
     // MARK: Removing items
 
-    public func removeItem(withUUID uuid: UUID) {
-        guard let foundItem = flattenedItems.first(where: { $0.uuid == uuid }) else { return }
+    func removeItem(withUUID uuid: UUID) {
+        removeItemAndSubitems(forItemWithUUID: uuid)
+        persistenceService?.saveToFile(item: storage)
+    }
 
-        if let word = foundItem as? Word,
-           let wordSetUUID = word.wordSetUUID,
-           let wordSet = item(withUUID: wordSetUUID) as? WordSet {
-            wordSet.removeWord(withUUID: word.uuid)
-        } else if let wordSet = foundItem as? WordSet,
-                  let parentFolderUUID = wordSet.parentFolderUUID,
-                  let parentFolder = item(withUUID: parentFolderUUID) as? Folder {
-            parentFolder.removeItem(withUUID: uuid)
-        } else if let folder = foundItem as? Folder,
-                  let parentFolderUUID = folder.parentFolderUUID,
-                  let parentFolder = item(withUUID: parentFolderUUID) as? Folder {
-            parentFolder.removeItem(withUUID: uuid)
+    private func removeItemAndSubitems(forItemWithUUID uuid: UUID) {
+        storage.items[uuid] = nil
+        for item in items(inItemWithUUID: uuid) {
+            removeItemAndSubitems(forItemWithUUID: item.uuid)
         }
-
-        saveToFile()
     }
 
     // MARK: Adding items
 
-    public func addFolder(_ folder: Folder, toFolderWithUUID uuid: UUID) {
-        guard let parentFolder = flattenedItems.first(where: { $0.uuid == uuid }) as? Folder else { return }
+    func addFolder(_ folder: Folder, toFolderWithUUID uuid: UUID) {
+        var folder = folder
         folder.parentFolderUUID = uuid
-        parentFolder.addItem(folder)
+        storage.items[folder.uuid] = .folder(folder)
 
-        saveToFile()
+        persistenceService?.saveToFile(item: storage)
     }
 
-    public func addWordSet(_ wordSet: WordSet, toFolderWithUUID uuid: UUID) {
-        guard let parentFolder = flattenedItems.first(where: { $0.uuid == uuid}) as? Folder else { return }
+    func addWordSet(_ wordSet: WordSet, toFolderWithUUID uuid: UUID) {
+        var wordSet = wordSet
         wordSet.parentFolderUUID = uuid
-        parentFolder.addItem(wordSet)
+        storage.items[wordSet.uuid] = .wordSet(wordSet)
 
-        saveToFile()
+        persistenceService?.saveToFile(item: storage)
     }
 
-    public func addWord(_ word: Word, toWordSetWithUUID uuid: UUID) {
-        guard let wordSet = flattenedItems.first(where: { $0.uuid == uuid }) as? WordSet else { return }
+    func addWord(_ word: Word, toWordSetWithUUID uuid: UUID) {
+        var word = word
         word.wordSetUUID = uuid
-        wordSet.addWord(word)
+        storage.items[word.uuid] = .word(word)
 
-        saveToFile()
+        persistenceService?.saveToFile(item: storage)
     }
 
     // MARK: Updating items
 
-    public func updateFolder(_ folder: Folder, withUUID uuid: UUID) {
-        guard let foundFolder = flattenedItems.first(where: { $0.uuid == uuid }) as? Folder,
-              let parentUUID = foundFolder.parentFolderUUID else { return }
+    func updateFolder(_ folder: Folder, withUUID uuid: UUID) {
+        guard let parentFolderUUID = storage.items[uuid]?.parentUUID else { return }
 
+        var folder = folder
         folder.uuid = uuid
-        removeItem(withUUID: uuid)
-        addFolder(folder, toFolderWithUUID: parentUUID)
+        folder.parentFolderUUID = parentFolderUUID
+        storage.items[uuid] = .folder(folder)
     }
 
-    public func updateWordSet(_ wordSet: WordSet, withUUID uuid: UUID) {
-        guard let foundWordSet = flattenedItems.first(where: { $0.uuid == uuid }) as? WordSet,
-              let parentUUID = foundWordSet.parentFolderUUID else { return }
+    func updateWordSet(_ wordSet: WordSet, withUUID uuid: UUID) {
+        guard let parentFolderUUID = storage.items[uuid]?.parentUUID else { return }
 
+        var wordSet = wordSet
         wordSet.uuid = uuid
-        removeItem(withUUID: uuid)
-        addWordSet(wordSet, toFolderWithUUID: parentUUID)
+        wordSet.parentFolderUUID = parentFolderUUID
+        storage.items[uuid] = .wordSet(wordSet)
     }
 
-    public func updateWord(_ word: Word, withUUID uuid: UUID) {
-        guard let foundWord = flattenedItems.first(where: { $0.uuid == uuid }) as? Word,
-              let parentUUID = foundWord.wordSetUUID else { return }
+    func updateWord(_ word: Word, withUUID uuid: UUID) {
+        guard let wordSetUUID = storage.items[uuid]?.parentUUID else { return }
 
+        var word = word
         word.uuid = uuid
-        removeItem(withUUID: uuid)
-        addWord(word, toWordSetWithUUID: parentUUID)
-    }
-
-    // MARK: Persistence
-
-    private func saveToFile() {
-        guard let fileURL = Self.fileURL else {
-            print("Failed to save user data – file URL does not exist")
-            return
-        }
-
-        do {
-            let data = try JSONEncoder().encode(rootFolder)
-            try data.write(to: fileURL, options: [.atomic])
-        } catch {
-            print(error)
-        }
-    }
-
-    private static func loadRootFolderFromFile() -> Folder? {
-        guard let fileURL = Self.fileURL else {
-            print("Failed to read user data – file URL does not exist")
-            return nil
-        }
-
-        do {
-            let data = try Data(contentsOf: fileURL)
-            let rootFolder = try JSONDecoder().decode(Folder.self, from: data)
-            return rootFolder
-        } catch {
-            print(error)
-            return nil
-        }
+        word.wordSetUUID = wordSetUUID
+        storage.items[uuid] = .word(word)
     }
 }

@@ -8,13 +8,13 @@
 import Foundation
 
 /// Set of methods that dependency injection services should implement
-public protocol DIContainerProtocol {
+protocol DIContainerProtocol {
 
     /// Registers component for specified type
     /// - Parameters:
     ///   - type: type for which the component should be registered
     ///   - component: component instance
-    func register<Component>(type: Component.Type, component: Any)
+    func register<Component>(type: Component.Type, component: Component)
 
     /// Return component that was previously registered for specified type
     /// - Parameter type: component type
@@ -22,20 +22,20 @@ public protocol DIContainerProtocol {
     func resolve<Component>(type: Component.Type) -> Component?
 }
 
-public final class DIContainer: DIContainerProtocol {
+final class DIContainer: DIContainerProtocol {
 
     /// Shared dependency injection container
-    public static let shared = DIContainer()
+    static let shared = DIContainer()
 
     private var components: [String: Any] = [:]
 
     private init() { }
 
-    public func register<Component>(type: Component.Type, component: Any) {
+    func register<Component>(type: Component.Type, component: Component) {
         components["\(type)"] = component
     }
 
-    public func resolve<Component>(type: Component.Type) -> Component? {
+    func resolve<Component>(type: Component.Type) -> Component? {
         components["\(type)"] as? Component
     }
 }

@@ -16,19 +16,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
+        let persistenceService = PersistenceService()
+        DIContainer.shared.register(type: PersistenceServiceProtocol.self, component: persistenceService)
         let storageService = StorageService()
         DIContainer.shared.register(type: StorageServiceProtocol.self, component: storageService)
-//        let rootFolderUUID = storageService.rootFolder.uuid
-//        let folder = Folder(name: "Folder 1", items: [])
-//        let wordSet = WordSet(name: "WordSet", words: [], isCaseSensitive: true)
+
+//        let rootFolderUUID = storageService.rootFolderUUID
+//        let folder = Folder(name: "Folder 1")
+//        let wordSet = WordSet(name: "WordSet", isCaseSensitive: true)
 //        storageService.addFolder(folder, toFolderWithUUID: rootFolderUUID)
 //        storageService.addWordSet(wordSet, toFolderWithUUID: rootFolderUUID)
-//        let subfolder = Folder(name: "Subfolder", items: [])
+//        let subfolder = Folder(name: "Subfolder")
 //        storageService.addFolder(subfolder, toFolderWithUUID: folder.uuid)
-//        let subfolderWordSet = WordSet(name: "Subfolder word set", words: [], isCaseSensitive: true)
+//        let subfolderWordSet = WordSet(name: "Subfolder word set", isCaseSensitive: true)
 //        storageService.addWordSet(subfolderWordSet, toFolderWithUUID: subfolder.uuid)
 
-        let factory = FolderScreenFactory(folderUUID: storageService.rootFolder.uuid)
+        guard let factory = FolderScreenFactory(folderUUID: storageService.rootFolderUUID) else { return }
         let navigationController = UINavigationController(rootViewController: factory.build())
 
         window = UIWindow(windowScene: windowScene)

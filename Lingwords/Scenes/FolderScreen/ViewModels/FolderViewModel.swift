@@ -8,17 +8,17 @@
 import Foundation
 
 /// Folder view model
-public struct FolderViewModel {
+struct FolderViewModel {
 
     // MARK: Properties
 
     var uuid: UUID
     var name: String
-    var items: [ItemViewModel]
+    var items: [FolderItemViewModel]
 
     // MARK: Initializers
 
-    public init(uuid: UUID, name: String, items: [ItemViewModel]) {
+    init(uuid: UUID, name: String, items: [FolderItemViewModel]) {
         self.uuid = uuid
         self.name = name
         self.items = items

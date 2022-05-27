@@ -8,33 +8,36 @@
 import Foundation
 
 /// FolderScreen Presenter
-public protocol FolderScreenPresenterProtocol: AnyObject {
+protocol FolderScreenPresenterProtocol: AnyObject {
 
     var view: FolderScreenViewProtocol? { get set }
 
     /// Converts specified folder to view model and asks view to show it
     /// - Parameter folder: folder model
-    func show(folder: Folder)
+    func show(folder: Folder, withItems items: [Item])
 }
 
-public final class FolderScreenPresenter {
+final class FolderScreenPresenter {
 
     // MARK: Properties
 
-    public weak var view: FolderScreenViewProtocol?
+    weak var view: FolderScreenViewProtocol?
 }
 
 // MARK: - FolderScreenPresenterProtocol
 
 extension FolderScreenPresenter: FolderScreenPresenterProtocol {
 
-    public func show(folder: Folder) {
-        var itemViewModels: [ItemViewModel] = []
-        for item in folder.items {
-            if let folder = item as? Folder {
-                itemViewModels.append(ItemViewModel(uuid: folder.uuid, name: folder.name, type: .folder))
-            } else if let wordSet = item as? WordSet {
-                itemViewModels.append(ItemViewModel(uuid: wordSet.uuid, name: wordSet.name, type: .wordSet))
+    func show(folder: Folder, withItems items: [Item]) {
+        var itemViewModels: [FolderItemViewModel] = []
+        for item in items {
+            switch item {
+            case .word:
+                continue
+            case let .wordSet(wordSet):
+                itemViewModels.append(.wordSet(name: wordSet.name, uuid: wordSet.uuid))
+            case let .folder(folder):
+                itemViewModels.append(.folder(name: folder.name, uuid: folder.uuid))
             }
         }
 

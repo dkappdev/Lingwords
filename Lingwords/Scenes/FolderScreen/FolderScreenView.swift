@@ -8,7 +8,7 @@
 import UIKit
 
 /// FolderScreen view
-public protocol FolderScreenViewProtocol: AnyObject {
+protocol FolderScreenViewProtocol: AnyObject {
 
     var interactor: FolderScreenInteractorProtocol? { get set }
     var router: FolderScreenRouterProtocol? { get set }
@@ -18,13 +18,22 @@ public protocol FolderScreenViewProtocol: AnyObject {
     func show(folder: FolderViewModel)
 }
 
-public final class FolderScreenView: UITableViewController {
+final class FolderScreenView: UITableViewController {
 
     // MARK: Constants
 
     private enum Section {
         case folder
         case wordSet
+
+        var sectionName: String {
+            switch self {
+            case .folder:
+                return "Folders"
+            case .wordSet:
+                return "Word Sets"
+            }
+        }
     }
 
     private enum CellIdentifier: String {
@@ -34,21 +43,21 @@ public final class FolderScreenView: UITableViewController {
 
     // MARK: Properties
 
-    public var interactor: FolderScreenInteractorProtocol?
-    public var router: FolderScreenRouterProtocol?
+    var interactor: FolderScreenInteractorProtocol?
+    var router: FolderScreenRouterProtocol?
 
-    private var folders: [ItemViewModel] = []
-    private var wordSets: [ItemViewModel] = []
+    private var folders: [FolderItemViewModel] = []
+    private var wordSets: [FolderItemViewModel] = []
 
     // MARK: Lifecycle
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.folder.rawValue)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellIdentifier.wordSet.rawValue)
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
         interactor?.requestFolder()
@@ -72,22 +81,15 @@ public final class FolderScreenView: UITableViewController {
 
     // MARK: UITableViewDataSource
 
-    public override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return (folders.isEmpty ? 0 : 1) + (wordSets.isEmpty ? 0 : 1)
     }
 
-    public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let section = getSection(for: section) else { return nil }
-
-        switch section {
-        case .folder:
-            return "Folders"
-        case .wordSet:
-            return "Word Sets"
-        }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        getSection(for: section)?.sectionName
     }
 
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = getSection(for: section) else { return 0 }
 
         switch section {
@@ -98,12 +100,11 @@ public final class FolderScreenView: UITableViewController {
         }
     }
 
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = getSection(for: indexPath.section) else { return UITableViewCell() }
 
         let cell: UITableViewCell
-        let viewModel: ItemViewModel
-
+        let viewModel: FolderItemViewModel
         switch section {
         case .folder:
             cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.folder.rawValue, for: indexPath)
@@ -124,7 +125,7 @@ public final class FolderScreenView: UITableViewController {
 
     // MARK: UITableViewDelegate
 
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let section = getSection(for: indexPath.section) else { return }
 
         switch section {
@@ -137,14 +138,18 @@ public final class FolderScreenView: UITableViewController {
         }
     }
 
-    public override func tableView(_ tableView: UITableView,
-                                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    override func tableView(
+        _ tableView: UITableView,
+        editingStyleForRowAt indexPath: IndexPath
+    ) -> UITableViewCell.EditingStyle {
         .delete
     }
 
-    public override func tableView(_ tableView: UITableView,
-                                   commit editingStyle: UITableViewCell.EditingStyle,
-                                   forRowAt indexPath: IndexPath) {
+    override func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
         guard let section = getSection(for: indexPath.section) else { return }
 
         switch section {
@@ -162,9 +167,17 @@ public final class FolderScreenView: UITableViewController {
 
 extension FolderScreenView: FolderScreenViewProtocol {
 
-    public func show(folder: FolderViewModel) {
-        folders = folder.items.filter { $0.type == .folder }
-        wordSets = folder.items.filter { $0.type == .wordSet }
+    func show(folder: FolderViewModel) {
+        wordSets.removeAll()
+        folders.removeAll()
+        for item in folder.items {
+            switch item {
+            case .wordSet:
+                wordSets.append(item)
+            case .folder:
+                folders.append(item)
+            }
+        }
         navigationItem.title = folder.name
         tableView.reloadData()
     }

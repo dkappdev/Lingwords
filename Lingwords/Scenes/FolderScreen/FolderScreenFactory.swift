@@ -7,19 +7,19 @@
 
 import UIKit
 
-public protocol FolderScreenFactoryProtocol {
+protocol FolderScreenFactoryProtocol {
 
     /// Create a new FolderScreen scene
     /// - Returns: new scene view
     func build() -> FolderScreenViewProtocol & UIViewController
 }
 
-public final class FolderScreenFactory {
+final class FolderScreenFactory {
 
     // MARK: Properties
 
     private let folderUUID: UUID
-    private let storageService: StorageServiceProtocol?
+    private let storageService: StorageServiceProtocol
 
     // MARK: Initializers
 
@@ -27,10 +27,11 @@ public final class FolderScreenFactory {
     /// - Parameters:
     ///   - folderUUID: UUID of the folder that the scene should display
     ///   - storageService: storage service used by the scene
-    public init(
+    init?(
         folderUUID: UUID,
         storageService: StorageServiceProtocol? = DIContainer.shared.resolve(type: StorageServiceProtocol.self)
     ) {
+        guard let storageService = storageService else { return nil }
         self.folderUUID = folderUUID
         self.storageService = storageService
     }
@@ -40,10 +41,12 @@ public final class FolderScreenFactory {
 
 extension FolderScreenFactory: FolderScreenFactoryProtocol {
 
-    public func build() -> FolderScreenViewProtocol & UIViewController {
+    func build() -> FolderScreenViewProtocol & UIViewController {
         let view: FolderScreenViewProtocol & UIViewController = FolderScreenView()
-        let interactor: FolderScreenInteractorProtocol = FolderScreenInteractor(folderUUID: folderUUID,
-                                                                                storageService: storageService)
+        let interactor: FolderScreenInteractorProtocol = FolderScreenInteractor(
+            folderUUID: folderUUID,
+            storageService: storageService
+        )
         let presenter: FolderScreenPresenterProtocol = FolderScreenPresenter()
         let router: FolderScreenRouterProtocol = FolderScreenRouter()
 

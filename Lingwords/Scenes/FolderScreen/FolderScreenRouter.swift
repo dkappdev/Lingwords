@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol FolderScreenRouterProtocol: AnyObject {
+protocol FolderScreenRouterProtocol: AnyObject {
 
     var view: (FolderScreenViewProtocol & UIViewController)? { get set }
 
@@ -20,19 +20,22 @@ public protocol FolderScreenRouterProtocol: AnyObject {
     func routeToWordSet(withUUID uuid: UUID)
 }
 
-public final class FolderScreenRouter {
+final class FolderScreenRouter {
 
     // MARK: Properties
 
-    public weak var view: (FolderScreenViewProtocol & UIViewController)?
+    weak var view: (FolderScreenViewProtocol & UIViewController)?
 }
 
 // MARK: - FolderScreenRouterProtocol
 
 extension FolderScreenRouter: FolderScreenRouterProtocol {
 
-    public func routeToSubfolder(withUUID uuid: UUID) {
-        let factory = FolderScreenFactory(folderUUID: uuid)
+    func routeToSubfolder(withUUID uuid: UUID) {
+        guard let factory = FolderScreenFactory(folderUUID: uuid) else {
+            print("ERROR: Couldn't create a FolderScreenFactory!")
+            return
+        }
         let newView = factory.build()
         if let navigationController = view?.navigationController {
             navigationController.pushViewController(newView, animated: true)
@@ -41,7 +44,7 @@ extension FolderScreenRouter: FolderScreenRouterProtocol {
         }
     }
 
-    public func routeToWordSet(withUUID uuid: UUID) {
+    func routeToWordSet(withUUID uuid: UUID) {
 
     }
 }
