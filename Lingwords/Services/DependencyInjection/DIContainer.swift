@@ -16,12 +16,13 @@ protocol DIContainerProtocol {
     ///   - component: component instance
     func register<Component>(type: Component.Type, component: Component)
 
-    /// Return component that was previously registered for specified type
+    /// Returns component that was previously registered for specified type
     /// - Parameter type: component type
     /// - Returns: component that was previously registered for specified type, `nil` otherwise
     func resolve<Component>(type: Component.Type) -> Component?
 }
 
+/// Concrete dependency injection container implementation. This class is used to register dependencies during setup.
 final class DIContainer: DIContainerProtocol {
 
     /// Shared dependency injection container

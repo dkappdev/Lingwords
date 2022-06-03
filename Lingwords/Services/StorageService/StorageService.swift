@@ -60,7 +60,7 @@ protocol StorageServiceProtocol {
     func updateWord(_ word: Word, withUUID uuid: UUID)
 }
 
-/// Concrete instance of storage service. This class is responsible for storing and modifying data.
+/// Concrete storage service implementation. This class is responsible for storing and modifying data.
 final class StorageService: StorageServiceProtocol {
 
     // MARK: Properties
@@ -72,7 +72,11 @@ final class StorageService: StorageServiceProtocol {
 
     // MARK: Initializers
 
-    /// Creates a new instance of `StorageService` with empty root folder.
+    /// Creates a new instance of `StorageService`.
+    ///
+    /// Root folder is loaded from disk using provided persistence service.
+    /// When no persistence service is provided, data is not being saved.
+    /// - Parameter persistenceService: Persistence service used to save and load data.
     init(
         persistenceService: PersistenceServiceProtocol? =
             DIContainer.shared.resolve(type: PersistenceServiceProtocol.self)

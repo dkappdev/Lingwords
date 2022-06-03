@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Instances of this class represent items in app storage.
 enum Item {
     case word(Word)
     case wordSet(WordSet)
