@@ -9,8 +9,8 @@ import UIKit
 
 protocol FolderScreenFactoryProtocol {
 
-    /// Create a new FolderScreen scene
-    /// - Returns: new scene view
+    /// Creates a new FolderScreen scene
+    /// - Returns: View controller responsible for showing the created scene
     func build() -> FolderScreenViewProtocol & UIViewController
 }
 
@@ -24,9 +24,12 @@ final class FolderScreenFactory {
     // MARK: Initializers
 
     /// Creates a new FolderScreen scene.
+    ///
+    /// Returns `nil` if no storage service was registered in DI container
+    /// and an alternative instance was not passed as an argument
     /// - Parameters:
     ///   - folderUUID: UUID of the folder that the scene should display
-    ///   - storageService: storage service used by the scene
+    ///   - storageService: Storage service used by the scene
     init?(
         folderUUID: UUID,
         storageService: StorageServiceProtocol? = DIContainer.shared.resolve(type: StorageServiceProtocol.self)

@@ -19,7 +19,6 @@
 		E248219D27D6816300CF63FE /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248219C27D6816300CF63FE /* StorageService.swift */; };
 		E24821A927D6BB8400CF63FE /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24821A827D6BB8400CF63FE /* StorageServiceTests.swift */; };
 		E24AA36D27D757FD00CA6523 /* FolderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */; };
-		E24AA36F27D7585F00CA6523 /* FolderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA36E27D7585F00CA6523 /* FolderItemViewModel.swift */; };
 		E24AA37127D7595F00CA6523 /* FolderScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AA37027D7595F00CA6523 /* FolderScreenView.swift */; };
 		E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346627D61C9A008E53CF /* AppDelegate.swift */; };
 		E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257346827D61C9A008E53CF /* SceneDelegate.swift */; };
@@ -29,8 +28,13 @@
 		E272714A27D7722900C2632F /* FolderScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272714927D7722900C2632F /* FolderScreenFactory.swift */; };
 		E281E8A228156CA200C03B33 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E281E8A128156CA200C03B33 /* FolderView.swift */; };
 		E28D278C27D744C5008771DE /* FolderScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */; };
+		E2C557A2284B70420037563C /* WordSetScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557A1284B70420037563C /* WordSetScreenRouter.swift */; };
+		E2C557A4284B70490037563C /* WordSetScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557A3284B70490037563C /* WordSetScreenView.swift */; };
+		E2C557A6284B704F0037563C /* WordSetScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557A5284B704F0037563C /* WordSetScreenInteractor.swift */; };
+		E2C557A8284B70590037563C /* WordSetScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557A7284B70590037563C /* WordSetScreenPresenter.swift */; };
+		E2C557AA284BCD030037563C /* WordSetScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557A9284BCD030037563C /* WordSetScreenFactory.swift */; };
+		E2C557AD284BD8AE0037563C /* WordSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C557AC284BD8AE0037563C /* WordSetViewModel.swift */; };
 		E2E4CEFD27DD0EFF00AAF042 /* FolderScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */; };
-		E2F3EED7284827C10016A14C /* WordSetScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F3EED6284827C10016A14C /* WordSetScreenFactory.swift */; };
 		E3DE2A82897B2AE859051BFE /* Pods_Lingwords.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA5407E34F03F2687745006 /* Pods_Lingwords.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +65,6 @@
 		E24821A627D6BB8400CF63FE /* LingwordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LingwordsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E24821A827D6BB8400CF63FE /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenPresenter.swift; sourceTree = "<group>"; };
-		E24AA36E27D7585F00CA6523 /* FolderItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderItemViewModel.swift; sourceTree = "<group>"; };
 		E24AA37027D7595F00CA6523 /* FolderScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenView.swift; sourceTree = "<group>"; };
 		E257346327D61C9A008E53CF /* Lingwords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lingwords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E257346627D61C9A008E53CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,8 +76,13 @@
 		E272714927D7722900C2632F /* FolderScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenFactory.swift; sourceTree = "<group>"; };
 		E281E8A128156CA200C03B33 /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenInteractor.swift; sourceTree = "<group>"; };
+		E2C557A1284B70420037563C /* WordSetScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenRouter.swift; sourceTree = "<group>"; };
+		E2C557A3284B70490037563C /* WordSetScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenView.swift; sourceTree = "<group>"; };
+		E2C557A5284B704F0037563C /* WordSetScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenInteractor.swift; sourceTree = "<group>"; };
+		E2C557A7284B70590037563C /* WordSetScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenPresenter.swift; sourceTree = "<group>"; };
+		E2C557A9284BCD030037563C /* WordSetScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenFactory.swift; sourceTree = "<group>"; };
+		E2C557AC284BD8AE0037563C /* WordSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetViewModel.swift; sourceTree = "<group>"; };
 		E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderScreenRouter.swift; sourceTree = "<group>"; };
-		E2F3EED6284827C10016A14C /* WordSetScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSetScreenFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				E207ED5527D7C0480080B88B /* DependencyInjection */,
-				E24821AF27D6CF9300CF63FE /* StorageService */,
+				E24821AF27D6CF9300CF63FE /* Storage */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -179,14 +187,14 @@
 			path = LingwordsTests;
 			sourceTree = "<group>";
 		};
-		E24821AF27D6CF9300CF63FE /* StorageService */ = {
+		E24821AF27D6CF9300CF63FE /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				E248219C27D6816300CF63FE /* StorageService.swift */,
 				E22B1D4428412C68006CA7FF /* PersistenceService.swift */,
 				E248218F27D66A6700CF63FE /* Models */,
 			);
-			path = StorageService;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		E257345A27D61C9A008E53CF = {
@@ -224,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				E25854D827E3E89400DB5DD2 /* FolderViewModel.swift */,
-				E24AA36E27D7585F00CA6523 /* FolderItemViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,21 +256,50 @@
 		E28D278A27D6ED16008771DE /* FolderScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E2C557B5284C1B6F0037563C /* CleanModule */,
 				E281E8A028156C8E00C03B33 /* Views */,
 				E25854DA27E3E8A700DB5DD2 /* ViewModels */,
+			);
+			path = FolderScreen;
+			sourceTree = "<group>";
+		};
+		E2C557AB284BD8A40037563C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E2C557AC284BD8AE0037563C /* WordSetViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E2C557B2284C14130037563C /* CleanModule */ = {
+			isa = PBXGroup;
+			children = (
+				E2C557A3284B70490037563C /* WordSetScreenView.swift */,
+				E2C557A5284B704F0037563C /* WordSetScreenInteractor.swift */,
+				E2C557A7284B70590037563C /* WordSetScreenPresenter.swift */,
+				E2C557A1284B70420037563C /* WordSetScreenRouter.swift */,
+				E2C557A9284BCD030037563C /* WordSetScreenFactory.swift */,
+			);
+			path = CleanModule;
+			sourceTree = "<group>";
+		};
+		E2C557B5284C1B6F0037563C /* CleanModule */ = {
+			isa = PBXGroup;
+			children = (
 				E24AA37027D7595F00CA6523 /* FolderScreenView.swift */,
 				E28D278B27D744C5008771DE /* FolderScreenInteractor.swift */,
 				E24AA36C27D757FD00CA6523 /* FolderScreenPresenter.swift */,
 				E2E4CEFC27DD0EFF00AAF042 /* FolderScreenRouter.swift */,
 				E272714927D7722900C2632F /* FolderScreenFactory.swift */,
 			);
-			path = FolderScreen;
+			path = CleanModule;
 			sourceTree = "<group>";
 		};
 		E2F3EED52847E1C10016A14C /* WordSetScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E2F3EED6284827C10016A14C /* WordSetScreenFactory.swift */,
+				E2C557B2284C14130037563C /* CleanModule */,
+				E2C557AB284BD8A40037563C /* ViewModels */,
 			);
 			path = WordSetScreen;
 			sourceTree = "<group>";
@@ -424,22 +460,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				E257346727D61C9A008E53CF /* AppDelegate.swift in Sources */,
+				E2C557A4284B70490037563C /* WordSetScreenView.swift in Sources */,
+				E2C557A2284B70420037563C /* WordSetScreenRouter.swift in Sources */,
 				E248219327D66CE500CF63FE /* Word.swift in Sources */,
 				E281E8A228156CA200C03B33 /* FolderView.swift in Sources */,
 				E248219527D66E8D00CF63FE /* Item.swift in Sources */,
-				E2F3EED7284827C10016A14C /* WordSetScreenFactory.swift in Sources */,
-				E24AA36F27D7585F00CA6523 /* FolderItemViewModel.swift in Sources */,
 				E24AA36D27D757FD00CA6523 /* FolderScreenPresenter.swift in Sources */,
 				E257346927D61C9A008E53CF /* SceneDelegate.swift in Sources */,
 				E22B1D4528412C68006CA7FF /* PersistenceService.swift in Sources */,
+				E2C557A6284B704F0037563C /* WordSetScreenInteractor.swift in Sources */,
 				E25854D927E3E89400DB5DD2 /* FolderViewModel.swift in Sources */,
 				E207ED5727D7C4DB0080B88B /* DIContainer.swift in Sources */,
 				E24AA37127D7595F00CA6523 /* FolderScreenView.swift in Sources */,
 				E248219127D66A7600CF63FE /* WordSet.swift in Sources */,
 				E272714A27D7722900C2632F /* FolderScreenFactory.swift in Sources */,
+				E2C557AA284BCD030037563C /* WordSetScreenFactory.swift in Sources */,
 				E248219727D6755C00CF63FE /* Folder.swift in Sources */,
 				E28D278C27D744C5008771DE /* FolderScreenInteractor.swift in Sources */,
 				E2E4CEFD27DD0EFF00AAF042 /* FolderScreenRouter.swift in Sources */,
+				E2C557A8284B70590037563C /* WordSetScreenPresenter.swift in Sources */,
+				E2C557AD284BD8AE0037563C /* WordSetViewModel.swift in Sources */,
 				E22B1D4328410E4D006CA7FF /* Storage.swift in Sources */,
 				E248219D27D6816300CF63FE /* StorageService.swift in Sources */,
 			);

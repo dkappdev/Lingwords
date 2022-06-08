@@ -16,7 +16,7 @@ protocol FolderScreenInteractorProtocol: AnyObject {
     func requestFolder()
 
     /// Removes item with specified UUID
-    /// - Parameter uuid: uuid of the item to be removed
+    /// - Parameter uuid: UUID of the item to be removed
     func removeItem(withUUID uuid: UUID)
 }
 
@@ -54,12 +54,7 @@ extension FolderScreenInteractor: FolderScreenInteractorProtocol {
     }
 
     func removeItem(withUUID uuid: UUID) {
-        guard let item = storageService.item(withUUID: folderUUID),
-              case let .folder(folder) = item else {
-            return
-        }
         storageService.removeItem(withUUID: uuid)
-        let folderItems = storageService.items(inItemWithUUID: folderUUID)
-        presenter?.show(folder: folder, withItems: folderItems)
+        requestFolder()
     }
 }

@@ -45,6 +45,15 @@ extension FolderScreenRouter: FolderScreenRouterProtocol {
     }
 
     func routeToWordSet(withUUID uuid: UUID) {
-
+        guard let factory = WordSetScreenFactory(wordSetUUID: uuid) else {
+            print("ERROR: Couldn't create a WordSetScreenFactory!")
+            return
+        }
+        let newView = factory.build()
+        if let navigationController = view?.navigationController {
+            navigationController.pushViewController(newView, animated: true)
+        } else {
+            view?.present(newView, animated: true, completion: nil)
+        }
     }
 }
